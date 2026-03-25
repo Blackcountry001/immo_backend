@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
-const setupSwagger = require('./swaggerConfigV2'); //importation swaggerConfig
+const setupSwagger = require('./swaggerConfig'); //importation swaggerConfig
 
 
 //  CRÉATION DE L'APP 
