@@ -1,0 +1,36 @@
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+//middleware json
+app.use(express.json()); // pour que le fichier json soit lu dans les requetes
+let annonces = []; //bd temporaire
+
+
+app.get('/', (req, res) => {
+ res.json({message: "Bienvenue sur l'API de cette agence immobiliere !" }); 
+}); //la premiere route de test
+
+// route pour creer post
+app.post('/api/articles', (req, res) => {
+  const nouvelleAnnonce = {
+        id: annonces.lenght + 1,
+        titre:req.body.titre,
+        prix:req.body.prix,
+        localisation: req.body.localisation,
+        date: new Date().toLocaleDateString()
+};
+annonces.push(nouvelleAnnonce);
+res.status(201).json(nouvelleAnnonce);
+
+});
+//route pour lire (GET)
+app.get('/api/articles', (req, res) => {
+  res.json(annonces);
+});
+
+app.listen(PORT, () => {
+  console.log('Serveur demarre sur http://localhost:${PORT}');
+});
+
+
